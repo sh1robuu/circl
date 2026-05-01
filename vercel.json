@@ -2,7 +2,6 @@
   "buildCommand": "",
   "installCommand": "",
   "outputDirectory": ".",
-  "framework": "html",
   "rewrites": [
     {
       "source": "/(.*)",
@@ -10,6 +9,5 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false,
-  "env": {}
+  "trailingSlash": false
 }
