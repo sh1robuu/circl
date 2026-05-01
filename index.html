@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIRCL — Collect. Inspire. Reuse. Connect. Learn.</title>
+  <meta name="description" content="CIRCL is a gamified circular economy platform for high school students. Exchange school supplies, earn Loop Points, and save the planet — one item at a time." />
+  <meta name="theme-color" content="#2D6A4F" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== SPLASH SCREEN ===== -->
+  <div id="splash-screen" class="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo">
+        <div class="pixel-earth">
+          <div class="earth-pixel" style="--x:2;--y:0;--c:var(--emerald)"></div>
+          <div class="earth-pixel" style="--x:3;--y:0;--c:var(--emerald)"></div>
+          <div class="earth-pixel" style="--x:1;--y:1;--c:var(--primary)"></div>
+          <div class="earth-pixel" style="--x:2;--y:1;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:3;--y:1;--c:var(--primary)"></div>
+          <div class="earth-pixel" style="--x:4;--y:1;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:0;--y:2;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:1;--y:2;--c:var(--primary)"></div>
+          <div class="earth-pixel" style="--x:2;--y:2;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:3;--y:2;--c:var(--emerald)"></div>
+          <div class="earth-pixel" style="--x:4;--y:2;--c:var(--primary)"></div>
+          <div class="earth-pixel" style="--x:5;--y:2;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:0;--y:3;--c:var(--primary)"></div>
+          <div class="earth-pixel" style="--x:1;--y:3;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:2;--y:3;--c:var(--primary)"></div>
+          <div class="earth-pixel" style="--x:3;--y:3;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:4;--y:3;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:5;--y:3;--c:var(--primary)"></div>
+          <div class="earth-pixel" style="--x:1;--y:4;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:2;--y:4;--c:var(--primary)"></div>
+          <div class="earth-pixel" style="--x:3;--y:4;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:4;--y:4;--c:var(--primary)"></div>
+          <div class="earth-pixel" style="--x:2;--y:5;--c:var(--secondary)"></div>
+          <div class="earth-pixel" style="--x:3;--y:5;--c:var(--primary)"></div>
+        </div>
+      </div>
+      <h1 class="splash-title pixel-font">CIRCL</h1>
+      <p class="splash-subtitle">Collect · Inspire · Reuse · Connect · Learn</p>
+      <div class="splash-loader">
+        <div class="loader-bar">
+          <div class="loader-fill"></div>
+        </div>
+        <span class="loader-text pixel-font-sm">LOADING...</span>
+      </div>
+    </div>
+    <div class="splash-particles" id="splash-particles"></div>
+  </div>
+
+  <!-- ===== MAIN APP ===== -->
+  <div id="app" class="app hidden">
+
+    <!-- ===== TOP HEADER ===== -->
+    <header class="top-header" id="top-header">
+      <div class="header-inner">
+        <div class="header-left">
+          <div class="logo-mark pixel-font">
+            <span class="logo-icon">♻</span>
+            <span>CIRCL</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <button class="points-badge" id="points-badge" aria-label="Loop Points">
+            <span class="points-icon">◆</span>
+            <span class="points-value pixel-font-sm" id="header-points">0</span>
+            <span class="points-label">LP</span>
+          </button>
+          <button class="notification-btn" id="notification-btn" aria-label="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notif-dot"></span>
+          </button>
+          <button class="avatar-btn" id="avatar-btn" aria-label="Profile">
+            <div class="pixel-avatar">
+              <div class="avatar-face">🌱</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== PAGE VIEWS ===== -->
+
+    <!-- DASHBOARD VIEW -->
+    <main class="page-view active" id="view-dashboard">
+      <div class="page-content">
+
+        <!-- User Hero Card -->
+        <section class="hero-card" id="hero-card">
+          <div class="hero-bg-pixels" id="hero-bg-pixels"></div>
+          <div class="hero-inner">
+            <div class="hero-avatar-section">
+              <div class="hero-avatar">
+                <div class="avatar-ring"></div>
+                <div class="avatar-emoji">🌱</div>
+                <div class="level-badge pixel-font-sm" id="level-badge">LV3</div>
+              </div>
+              <div class="hero-info">
+                <h2 class="hero-name" id="hero-name">EcoWarrior_23</h2>
+                <p class="hero-level pixel-font-sm" id="hero-level">
+                  <span class="level-icon">⭐</span> Level 3: Seedling
+                </p>
+                <div class="hero-xp-bar">
+                  <div class="xp-fill" id="xp-fill" style="width: 65%"></div>
+                  <span class="xp-text">650 / 1000 XP</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-points-display">
+              <div class="points-coin">
+                <span class="coin-icon">◆</span>
+              </div>
+              <div class="points-info">
+                <span class="points-number pixel-font" id="hero-points">0</span>
+                <span class="points-desc">Loop Points</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Impact Tracker -->
+        <section class="impact-section" id="impact-section">
+          <h3 class="section-title">
+            <span class="section-icon">🌍</span>
+            <span>Your Impact</span>
+          </h3>
+          <div class="impact-grid">
+            <div class="impact-card impact-co2">
+              <div class="impact-icon-wrap">
+                <div class="impact-pixel-icon">🏭</div>
+              </div>
+              <div class="impact-data">
+                <span class="impact-value pixel-font" id="co2-saved">0</span>
+                <span class="impact-unit">kg CO₂</span>
+                <span class="impact-label">Carbon Saved</span>
+              </div>
+              <div class="impact-bar">
+                <div class="impact-bar-fill co2-bar" id="co2-bar" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="impact-card impact-water">
+              <div class="impact-icon-wrap">
+                <div class="impact-pixel-icon">💧</div>
+              </div>
+              <div class="impact-data">
+                <span class="impact-value pixel-font" id="water-saved">0</span>
+                <span class="impact-unit">Liters</span>
+                <span class="impact-label">Water Saved</span>
+              </div>
+              <div class="impact-bar">
+                <div class="impact-bar-fill water-bar" id="water-bar" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+          <button class="action-btn action-list" onclick="CIRCL.navigate('list')">
+            <span class="action-icon">📦</span>
+            <span class="action-text">List Item</span>
+            <span class="action-sub">Earn Points</span>
+          </button>
+          <button class="action-btn action-browse" onclick="CIRCL.navigate('marketplace')">
+            <span class="action-icon">🛒</span>
+            <span class="action-text">Browse</span>
+            <span class="action-sub">Spend Points</span>
+          </button>
+          <button class="action-btn action-scan" onclick="CIRCL.navigate('station')">
+            <span class="action-icon">📱</span>
+            <span class="action-text">Station</span>
+            <span class="action-sub">Drop Off</span>
+          </button>
+        </section>
+
+        <!-- Recent Activity Feed -->
+        <section class="feed-section">
+          <div class="section-header">
+            <h3 class="section-title">
+              <span class="section-icon">🔥</span>
+              <span>Fresh Drops</span>
+            </h3>
+            <button class="see-all-btn" onclick="CIRCL.navigate('marketplace')">See All →</button>
+          </div>
+          <div class="feed-grid" id="feed-grid">
+            <!-- Items injected by JS -->
+          </div>
+        </section>
+
+        <!-- Leaderboard Teaser -->
+        <section class="leaderboard-section">
+          <h3 class="section-title">
+            <span class="section-icon">🏆</span>
+            <span>Top CIRCLers This Week</span>
+          </h3>
+          <div class="leaderboard-list" id="leaderboard-list">
+            <!-- Injected by JS -->
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- MARKETPLACE VIEW -->
+    <main class="page-view" id="view-marketplace">
+      <div class="page-content">
+        <div class="marketplace-header">
+          <h2 class="page-title pixel-font">MARKETPLACE</h2>
+          <p class="page-subtitle">Spend your Loop Points on awesome stuff</p>
+        </div>
+
+        <!-- Search & Filters -->
+        <div class="search-bar-wrap">
+          <div class="search-input-wrap">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="search-input" id="search-input" placeholder="Search items..." />
+          </div>
+        </div>
+        <div class="filter-row" id="filter-row">
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="Books">📚 Books</button>
+          <button class="filter-chip" data-filter="Uniforms">👔 Uniforms</button>
+          <button class="filter-chip" data-filter="Electronics">🔌 Electronics</button>
+          <button class="filter-chip" data-filter="Stationery">✏️ Stationery</button>
+          <button class="filter-chip" data-filter="Other">📎 Other</button>
+        </div>
+        <div class="condition-filter-row" id="condition-filter-row">
+          <button class="condition-chip active" data-condition="all">All Grades</button>
+          <button class="condition-chip" data-condition="A">Grade A</button>
+          <button class="condition-chip" data-condition="B">Grade B</button>
+          <button class="condition-chip" data-condition="C">Grade C</button>
+          <button class="condition-chip" data-condition="D">Grade D</button>
+        </div>
+
+        <!-- Marketplace Grid -->
+        <div class="marketplace-grid" id="marketplace-grid">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </main>
+
+    <!-- LIST ITEM VIEW -->
+    <main class="page-view" id="view-list">
+      <div class="page-content">
+        <div class="list-header">
+          <h2 class="page-title pixel-font">LIST ITEM</h2>
+          <p class="page-subtitle">Earn Loop Points by sharing your stuff</p>
+        </div>
+        <form class="list-form" id="list-form">
+          <!-- Image Upload -->
+          <div class="upload-area" id="upload-area">
+            <div class="upload-placeholder" id="upload-placeholder">
+              <div class="upload-icon">📷</div>
+              <p class="upload-text">Drop a photo here or tap to upload</p>
+              <span class="upload-hint">PNG, JPG up to 5MB</span>
+            </div>
+            <img class="upload-preview hidden" id="upload-preview" alt="Item preview" />
+            <input type="file" id="file-input" accept="image/*" hidden />
+          </div>
+
+          <!-- Form Fields -->
+          <div class="form-group">
+            <label class="form-label" for="item-title">Item Title</label>
+            <input type="text" class="form-input" id="item-title" placeholder="e.g., AP Chemistry Textbook" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="item-category">Category</label>
+              <select class="form-select" id="item-category" required>
+                <option value="">Select...</option>
+                <option value="Books">📚 Books</option>
+                <option value="Uniforms">👔 Uniforms</option>
+                <option value="Electronics">🔌 Electronics</option>
+                <option value="Stationery">✏️ Stationery</option>
+                <option value="Other">📎 Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="item-condition">Condition</label>
+              <select class="form-select" id="item-condition" required>
+                <option value="">Select...</option>
+                <option value="A">Grade A — Like New</option>
+                <option value="B">Grade B — Good</option>
+                <option value="C">Grade C — Used</option>
+                <option value="D">Grade D — Worn</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="item-school">School Name</label>
+            <input type="text" class="form-input" id="item-school" placeholder="e.g., Greenfield High" />
+          </div>
+
+          <!-- Points Preview -->
+          <div class="points-preview" id="points-preview">
+            <div class="preview-label">You'll earn</div>
+            <div class="preview-points">
+              <span class="preview-coin">◆</span>
+              <span class="preview-value pixel-font" id="preview-points-value">0</span>
+              <span class="preview-lp">Loop Points</span>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span class="btn-text">List My Item</span>
+            <span class="btn-icon">🚀</span>
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <!-- CIRCL STATION VIEW -->
+    <main class="page-view" id="view-station">
+      <div class="page-content">
+        <div class="station-header">
+          <h2 class="page-title pixel-font">CIRCL STATION</h2>
+          <p class="page-subtitle">Volunteer Hub — Confirm Handoffs</p>
+        </div>
+
+        <div class="station-scanner">
+          <div class="scanner-frame">
+            <div class="scanner-corners">
+              <span class="corner tl"></span>
+              <span class="corner tr"></span>
+              <span class="corner bl"></span>
+              <span class="corner br"></span>
+            </div>
+            <div class="scanner-line"></div>
+            <div class="scanner-icon">📱</div>
+          </div>
+          <button class="scan-btn" id="scan-btn" onclick="CIRCL.simulateScan()">
+            <span class="pixel-font-sm">SIMULATE QR SCAN</span>
+          </button>
+        </div>
+
+        <!-- Pending Handoffs -->
+        <div class="handoffs-section">
+          <h3 class="section-title">
+            <span class="section-icon">📋</span>
+            <span>Pending Handoffs</span>
+          </h3>
+          <div class="handoffs-list" id="handoffs-list">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- PROFILE VIEW -->
+    <main class="page-view" id="view-profile">
+      <div class="page-content">
+        <div class="profile-header-section">
+          <div class="profile-avatar-large">
+            <div class="avatar-ring-large"></div>
+            <div class="avatar-emoji-large">🌱</div>
+          </div>
+          <h2 class="profile-name pixel-font" id="profile-name">ECOWARRIOR_23</h2>
+          <p class="profile-email" id="profile-email">eco.warrior@school.edu</p>
+          <div class="profile-level-wrap">
+            <span class="profile-level pixel-font-sm">⭐ Level 3: Seedling</span>
+          </div>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-card">
+            <span class="stat-value pixel-font" id="profile-points">0</span>
+            <span class="stat-label">Loop Points</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value pixel-font" id="profile-listed">0</span>
+            <span class="stat-label">Items Listed</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value pixel-font" id="profile-claimed">0</span>
+            <span class="stat-label">Items Claimed</span>
+          </div>
+        </div>
+
+        <div class="profile-achievements">
+          <h3 class="section-title">
+            <span class="section-icon">🏅</span>
+            <span>Achievements</span>
+          </h3>
+          <div class="achievements-grid" id="achievements-grid">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <div class="profile-actions">
+          <button class="profile-btn">⚙️ Settings</button>
+          <button class="profile-btn">📊 My Stats</button>
+          <button class="profile-btn danger">🚪 Log Out</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="nav-item active" data-view="dashboard" onclick="CIRCL.navigate('dashboard')">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Home</span>
+      </button>
+      <button class="nav-item" data-view="marketplace" onclick="CIRCL.navigate('marketplace')">
+        <span class="nav-icon">🛒</span>
+        <span class="nav-label">Market</span>
+      </button>
+      <button class="nav-item nav-center" data-view="list" onclick="CIRCL.navigate('list')">
+        <span class="nav-plus">+</span>
+      </button>
+      <button class="nav-item" data-view="station" onclick="CIRCL.navigate('station')">
+        <span class="nav-icon">📱</span>
+        <span class="nav-label">Station</span>
+      </button>
+      <button class="nav-item" data-view="profile" onclick="CIRCL.navigate('profile')">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label">Profile</span>
+      </button>
+    </nav>
+
+    <!-- ===== MODALS ===== -->
+
+    <!-- Success Modal -->
+    <div class="modal-overlay hidden" id="success-modal">
+      <div class="modal-card success-modal-card">
+        <div class="modal-confetti" id="modal-confetti"></div>
+        <div class="success-icon">🎉</div>
+        <h3 class="modal-title pixel-font">ITEM LISTED!</h3>
+        <p class="modal-subtitle">You just earned</p>
+        <div class="modal-points">
+          <span class="modal-coin">◆</span>
+          <span class="modal-points-value pixel-font" id="modal-earned-points">50</span>
+          <span class="modal-lp">Loop Points</span>
+        </div>
+        <div class="modal-impact-note">
+          <span>🌍 Estimated impact: -0.5kg CO₂</span>
+        </div>
+        <button class="modal-btn" onclick="CIRCL.closeModal('success-modal')">
+          <span class="pixel-font-sm">AWESOME!</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Claim Modal -->
+    <div class="modal-overlay hidden" id="claim-modal">
+      <div class="modal-card claim-modal-card">
+        <button class="modal-close" onclick="CIRCL.closeModal('claim-modal')">✕</button>
+        <div class="claim-item-preview">
+          <div class="claim-item-image" id="claim-item-image"></div>
+          <div class="claim-item-info">
+            <h3 class="claim-item-title" id="claim-item-title">Item Title</h3>
+            <span class="claim-item-condition" id="claim-item-condition">Grade A</span>
+            <span class="claim-item-school" id="claim-item-school">School Name</span>
+          </div>
+        </div>
+        <div class="claim-cost-section">
+          <span class="claim-cost-label">Cost:</span>
+          <div class="claim-cost-value">
+            <span class="claim-coin">◆</span>
+            <span class="pixel-font" id="claim-item-cost">50</span>
+            <span>LP</span>
+          </div>
+        </div>
+        <div class="claim-balance-section">
+          <span>Your balance:</span>
+          <span class="pixel-font-sm" id="claim-balance">285</span>
+          <span>LP</span>
+        </div>
+        <button class="claim-confirm-btn" id="claim-confirm-btn" onclick="CIRCL.confirmClaim()">
+          <span class="pixel-font-sm">CLAIM ITEM</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div class="modal-overlay hidden" id="qr-modal">
+      <div class="modal-card qr-modal-card">
+        <div class="qr-success-icon">✅</div>
+        <h3 class="modal-title pixel-font">CLAIMED!</h3>
+        <p class="modal-subtitle">Show this QR code at the CIRCL Station</p>
+        <div class="qr-code-wrap" id="qr-code-wrap">
+          <canvas id="qr-canvas" width="180" height="180"></canvas>
+        </div>
+        <div class="qr-details">
+          <p class="qr-item-name" id="qr-item-name">Item Name</p>
+          <p class="qr-pickup-code pixel-font-sm" id="qr-pickup-code">PICKUP-0000</p>
+        </div>
+        <button class="modal-btn" onclick="CIRCL.closeModal('qr-modal')">
+          <span class="pixel-font-sm">DONE</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- Scan Result Modal -->
+    <div class="modal-overlay hidden" id="scan-modal">
+      <div class="modal-card scan-modal-card">
+        <div class="scan-result-icon">📦</div>
+        <h3 class="modal-title pixel-font">SCANNED!</h3>
+        <p class="scan-result-text" id="scan-result-text">Item handoff confirmed</p>
+        <div class="scan-item-details" id="scan-item-details"></div>
+        <button class="scan-confirm-btn" id="scan-confirm-btn" onclick="CIRCL.confirmHandoff()">
+          <span class="pixel-font-sm">CONFIRM HANDOFF</span>
+        </button>
+        <button class="modal-btn secondary" onclick="CIRCL.closeModal('scan-modal')">
+          <span class="pixel-font-sm">CANCEL</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
