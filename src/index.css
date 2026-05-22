@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* ===== CIRCL Design System ===== */
+
+@theme {
+  --color-mint-50: #f0fdf9;
+  --color-mint-100: #ccfbef;
+  --color-mint-200: #9af5df;
+  --color-mint-300: #5fe8cc;
+  --color-mint-400: #2dd4b4;
+  --color-mint-500: #14b89c;
+  --color-mint-600: #0d9480;
+  --color-mint-700: #0f7668;
+  --color-mint-800: #115e54;
+  --color-mint-900: #134e46;
+
+  --color-leaf-50: #f0fdf4;
+  --color-leaf-100: #dcfce7;
+  --color-leaf-200: #bbf7d0;
+  --color-leaf-300: #86efac;
+  --color-leaf-400: #4ade80;
+  --color-leaf-500: #22c55e;
+  --color-leaf-600: #16a34a;
+  --color-leaf-700: #15803d;
+  --color-leaf-800: #166534;
+  --color-leaf-900: #14532d;
+
+  --color-sun-50: #fefce8;
+  --color-sun-100: #fef9c3;
+  --color-sun-200: #fef08a;
+  --color-sun-300: #fde047;
+  --color-sun-400: #facc15;
+  --color-sun-500: #eab308;
+  --color-sun-600: #ca8a04;
+  --color-sun-700: #a16207;
+  --color-sun-800: #854d0e;
+  --color-sun-900: #713f12;
+
+  --color-coral-50: #fff1f2;
+  --color-coral-100: #ffe4e6;
+  --color-coral-200: #fecdd3;
+  --color-coral-300: #fda4af;
+  --color-coral-400: #fb7185;
+  --color-coral-500: #f43f5e;
+  --color-coral-600: #e11d48;
+
+  --color-glass-white: rgba(255, 255, 255, 0.7);
+  --color-glass-white-light: rgba(255, 255, 255, 0.4);
+  --color-glass-border: rgba(255, 255, 255, 0.5);
+
+  --font-family-display: 'Quicksand', 'Inter', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+}
+
+/* ===== Base styles ===== */
+body {
+  font-family: var(--font-family-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Glassmorphism utilities ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.glass-dark {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Gradient backgrounds ===== */
+.bg-circl-gradient {
+  background: linear-gradient(135deg, #f0fdf9 0%, #dcfce7 30%, #fefce8 70%, #f0fdf9 100%);
+}
+
+.bg-circl-gradient-alt {
+  background: linear-gradient(160deg, #ccfbef 0%, #bbf7d0 40%, #fef9c3 100%);
+}
+
+.bg-hero-gradient {
+  background: linear-gradient(135deg, #0d9480 0%, #14b89c 25%, #22c55e 50%, #4ade80 75%, #fde047 100%);
+}
+
+/* ===== Scrollbar styling ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* ===== Animation keyframes ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
