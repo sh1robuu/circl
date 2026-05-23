@@ -22,6 +22,10 @@ import {
   getDoc,
   updateDoc,
   serverTimestamp,
+  query,
+  collection,
+  where,
+  getDocs,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -51,7 +55,7 @@ export { app, analytics, auth, db };
  * Register a new user with email/password
  * Creates Firebase Auth user + Firestore profile document
  */
-export async function registerUser({ email, password, name, role, childName, childAge }) {
+export async function registerUser({ email, password, name, role, childName, childAge, childEmail }) {
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
   const user = userCredential.user;
 
@@ -66,6 +70,7 @@ export async function registerUser({ email, password, name, role, childName, chi
     role,
     avatar: role === 'child' ? '🧒' : role === 'parent' ? '👩' : '🛡️',
     selectedAvatar: role === 'child' ? 0 : null,
+    onboardingCompleted: false,
     createdAt: serverTimestamp(),
     // Child-specific
     ...(role === 'child' && {
@@ -81,12 +86,32 @@ export async function registerUser({ email, password, name, role, childName, chi
     ...(role === 'parent' && {
       childrenIds: [],
       childName: childName || '',
+      childEmail: childEmail || '',
       notificationsEnabled: true,
     }),
   };
 
   // Save profile to Firestore
   await setDoc(doc(db, 'users', user.uid), profileData);
+
+  // Link parent to child account if childEmail provided
+  if (role === 'parent' && childEmail) {
+    try {
+      const q = query(collection(db, 'users'), where('email', '==', childEmail), where('role', '==', 'child'));
+      const snapshot = await getDocs(q);
+      if (!snapshot.empty) {
+        const childDoc = snapshot.docs[0];
+        const childUid = childDoc.id;
+        // Link both ways
+        await updateDoc(doc(db, 'users', user.uid), { childrenIds: [childUid] });
+        await updateDoc(doc(db, 'users', childUid), { parentId: user.uid });
+        profileData.childrenIds = [childUid];
+      }
+    } catch (e) {
+      console.warn('Could not link child account:', e.message);
+      // Non-blocking: parent account still created successfully
+    }
+  }
 
   return profileData;
 }

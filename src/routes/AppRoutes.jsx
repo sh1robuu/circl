@@ -16,6 +16,13 @@ import ApprovalQueuePage from '../pages/ApprovalQueuePage';
 import MoneyConfirmationPage from '../pages/MoneyConfirmationPage';
 import SafetySettingsPage from '../pages/SafetySettingsPage';
 import AdminDashboardPage from '../pages/AdminDashboardPage';
+import WelcomePage from '../pages/WelcomePage';
+import EcoAcademyPage from '../pages/EcoAcademyPage';
+import EcoLessonPage from '../pages/EcoLessonPage';
+import EcoQuizPage from '../pages/EcoQuizPage';
+import EcoEncyclopediaPage from '../pages/EcoEncyclopediaPage';
+import EcoItemDetailPage from '../pages/EcoItemDetailPage';
+import GreenChallengePage from '../pages/GreenChallengePage';
 
 /**
  * ProtectedRoute - Redirects to auth if not logged in
@@ -45,6 +52,7 @@ export default function AppRoutes() {
       {/* Public routes */}
       <Route path="/" element={<LandingPage />} />
       <Route path="/auth" element={<AuthSelectPage />} />
+      <Route path="/welcome" element={<WelcomePage />} />
 
       {/* Child routes */}
       <Route
@@ -92,6 +100,54 @@ export default function AppRoutes() {
         element={
           <ProtectedRoute allowedRole="child">
             <ItemDetailPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/child/eco-academy"
+        element={
+          <ProtectedRoute allowedRole="child">
+            <EcoAcademyPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/child/eco-lesson/:chapterId"
+        element={
+          <ProtectedRoute allowedRole="child">
+            <EcoLessonPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/child/eco-quiz/:chapterId"
+        element={
+          <ProtectedRoute allowedRole="child">
+            <EcoQuizPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/child/eco-encyclopedia"
+        element={
+          <ProtectedRoute allowedRole="child">
+            <EcoEncyclopediaPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/child/eco-item/:itemId"
+        element={
+          <ProtectedRoute allowedRole="child">
+            <EcoItemDetailPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/child/green-challenge/:chapterId"
+        element={
+          <ProtectedRoute allowedRole="child">
+            <GreenChallengePage />
           </ProtectedRoute>
         }
       />

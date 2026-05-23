@@ -158,6 +158,51 @@ export default function ChildHomePage() {
       {/* ===== MOTIVATIONAL BANNER ===== */}
       <MotivationalBanner completedWeeks={completedCount} />
 
+      {/* ===== HỌC VIỆN XANH CTA ===== */}
+      <Link to="/child/eco-academy">
+        <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-leaf-500 via-leaf-600 to-mint-600 p-5 text-white shadow-lg">
+            <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/10" />
+            <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-white/5" />
+            <div className="relative flex items-center justify-between">
+              <div>
+                <div className="inline-flex items-center gap-1.5 bg-white/20 text-white/90 text-[11px] px-2.5 py-1 rounded-full font-medium mb-2 backdrop-blur-sm">
+                  🐿️ Sóc Xanh mời con học
+                </div>
+                <h3 className="font-[Quicksand] font-bold text-lg">Học viện Xanh</h3>
+                <p className="text-white/80 text-xs mt-0.5">Học bảo vệ môi trường từ chính đồ trong nhà!</p>
+              </div>
+              <div className="text-4xl">🌿</div>
+            </div>
+          </div>
+        </motion.div>
+      </Link>
+
+      {/* ===== ECO QUICK ACTIONS ===== */}
+      <div className="grid grid-cols-2 gap-3">
+        <Link to="/child/eco-encyclopedia">
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+            className="glass rounded-2xl p-4 flex items-center gap-3 hover:shadow-md transition-shadow">
+            <div className="w-10 h-10 rounded-xl bg-mint-100 flex items-center justify-center text-xl">🔍</div>
+            <div>
+              <h4 className="font-bold text-gray-800 text-xs">Bách Khoa Đồ Vật</h4>
+              <p className="text-[10px] text-gray-500">8 nhóm đồ vật</p>
+            </div>
+          </motion.div>
+        </Link>
+        <Link to="/child/eco-academy">
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+            className="glass rounded-2xl p-4 flex items-center gap-3 hover:shadow-md transition-shadow">
+            <div className="w-10 h-10 rounded-xl bg-leaf-100 flex items-center justify-center text-xl">📝</div>
+            <div>
+              <h4 className="font-bold text-gray-800 text-xs">Thử Thách Xanh</h4>
+              <p className="text-[10px] text-gray-500">Thử thách tuần này</p>
+            </div>
+          </motion.div>
+        </Link>
+      </div>
+
       {/* ===== CURRENT CHALLENGE (Big CTA) ===== */}
       {activeChallenge && (
         <Link to="/child/challenge">

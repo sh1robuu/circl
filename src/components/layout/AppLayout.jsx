@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Target, Wallet, Bot, Package, LayoutDashboard, ClipboardCheck, Banknote, Shield, LogOut, Menu, X } from 'lucide-react';
+import { Home, Target, Wallet, Bot, Package, LayoutDashboard, ClipboardCheck, Banknote, Shield, LogOut, Menu, X, Leaf, Search } from 'lucide-react';
 import { useState } from 'react';
 import useStore from '../../store/useStore';
 import RoleBadge from '../common/RoleBadge';
@@ -13,6 +13,8 @@ function getAvatar(user) {
 
 const childNavItems = [
   { path: '/child', label: 'Trang chủ', icon: Home },
+  { path: '/child/eco-academy', label: 'Học viện Xanh', icon: Leaf },
+  { path: '/child/eco-encyclopedia', label: 'Bách Khoa', icon: Search },
   { path: '/child/challenge', label: 'Nhiệm vụ', icon: Target },
   { path: '/child/jars', label: 'Ví 3 Lọ', icon: Wallet },
   { path: '/child/teach-ai', label: 'Bé dạy AI', icon: Bot },

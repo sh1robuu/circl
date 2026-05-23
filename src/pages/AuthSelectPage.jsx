@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Mail, Lock, User, Eye, EyeOff, Loader2, Baby, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Mail, Lock, User, Eye, EyeOff, Loader2, Baby, AlertCircle, Link2 } from 'lucide-react';
 import useStore from '../store/useStore';
 import { registerUser, loginUser, getAuthErrorMessage } from '../utils/auth';
 import { roles } from '../data/mockUsers';
@@ -28,6 +28,7 @@ export default function AuthSelectPage() {
   const [name, setName] = useState('');
   const [childName, setChildName] = useState('');
   const [childAge, setChildAge] = useState('9');
+  const [childEmail, setChildEmail] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -36,7 +37,7 @@ export default function AuthSelectPage() {
     try {
       const user = await loginUser(email, password);
       setAuthUser(user);
-      navigate({ child: '/child', parent: '/parent', admin: '/admin' }[user.role] || '/');
+      navigate('/welcome', { state: { isNewUser: false } });
     } catch (err) {
       setError(getAuthErrorMessage(err));
     } finally {
@@ -55,9 +56,10 @@ export default function AuthSelectPage() {
         name: selectedRole === 'child' ? childName || name : name,
         childName: selectedRole === 'parent' ? childName : undefined,
         childAge: selectedRole === 'child' ? Number(childAge) : undefined,
+        childEmail: selectedRole === 'parent' ? childEmail : undefined,
       });
       setAuthUser(user);
-      navigate({ child: '/child', parent: '/parent', admin: '/admin' }[user.role] || '/');
+      navigate('/welcome', { state: { isNewUser: true } });
     } catch (err) {
       setError(getAuthErrorMessage(err));
     } finally {
@@ -67,7 +69,7 @@ export default function AuthSelectPage() {
 
   const handleDemoLogin = (roleId) => {
     setRole(roleId);
-    navigate({ child: '/child', parent: '/parent', admin: '/admin' }[roleId]);
+    navigate('/welcome', { state: { isNewUser: false } });
   };
 
   return (
@@ -265,15 +267,32 @@ export default function AuthSelectPage() {
                   )}
 
                   {selectedRole === 'parent' && (
-                    <div>
-                      <label className="text-sm font-medium text-gray-700 mb-1.5 block">Tên con (tùy chọn)</label>
-                      <div className="relative">
-                        <Baby size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                        <input type="text" value={childName} onChange={(e) => setChildName(e.target.value)}
-                          placeholder="Ví dụ: Minh"
-                          className="w-full bg-white/60 border border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mint-300" />
+                    <>
+                      <div>
+                        <label className="text-sm font-medium text-gray-700 mb-1.5 block">Tên con (tùy chọn)</label>
+                        <div className="relative">
+                          <Baby size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                          <input type="text" value={childName} onChange={(e) => setChildName(e.target.value)}
+                            placeholder="Ví dụ: Minh"
+                            className="w-full bg-white/60 border border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mint-300" />
+                        </div>
                       </div>
-                    </div>
+                      <div>
+                        <label className="text-sm font-medium text-gray-700 mb-1.5 block">
+                          Email tài khoản của con
+                          <span className="text-gray-400 font-normal ml-1">(để kết nối)</span>
+                        </label>
+                        <div className="relative">
+                          <Link2 size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                          <input type="email" value={childEmail} onChange={(e) => setChildEmail(e.target.value)}
+                            placeholder="email-con@example.com"
+                            className="w-full bg-white/60 border border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mint-300" />
+                        </div>
+                        <p className="text-[11px] text-gray-400 mt-1 pl-1">
+                          💡 Nhập email tài khoản con đã đăng ký để liên kết và quản lý. Có thể thêm sau.
+                        </p>
+                      </div>
+                    </>
                   )}
 
                   <div>

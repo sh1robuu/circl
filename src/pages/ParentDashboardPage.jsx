@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ClipboardCheck, Banknote, Shield, TrendingUp, BookOpen, Recycle, Lightbulb, Sparkles, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { ClipboardCheck, Banknote, Shield, TrendingUp, BookOpen, Recycle, Lightbulb, Sparkles, ArrowUpRight, ArrowDownRight, MessageCircle, Clock, Heart } from 'lucide-react';
 import useStore from '../store/useStore';
 import GlassCard from '../components/common/GlassCard';
 import ProgressRing from '../components/common/ProgressRing';
@@ -10,6 +10,7 @@ import SkillRadarChart, { generateSkillStats } from '../components/dashboard/Ski
 import { mockMoneyFlowChart, mockWeeklyReports } from '../data/mockReports';
 import { skillTagLabels } from '../data/mockChallenges';
 import { formatCurrency } from '../utils/helpers';
+import { parentPrompts } from '../data/parentPrompts';
 
 function TrendBadge({ value, positive = true }) {
   return (
@@ -225,6 +226,47 @@ export default function ParentDashboardPage() {
           Streak 5 ngày liên tục cho thấy sự cam kết. Khuyến nghị: tiếp tục khuyến khích bé
           chia sẻ thêm với cộng đồng (hiện 21%).
         </p>
+      </GlassCard>
+
+      {/* Parent Co-Play Prompt */}
+      <GlassCard className="p-5">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-leaf-400 to-mint-500 flex items-center justify-center text-white">
+            <MessageCircle size={16} />
+          </div>
+          <h3 className="font-semibold text-gray-800">Gợi ý trò chuyện tuần này</h3>
+          <span className="ml-auto text-[11px] font-bold text-mint-600 bg-mint-50 px-2 py-0.5 rounded-full">🐿️ Sóc Xanh</span>
+        </div>
+        {parentPrompts.slice(0, 1).map((prompt) => (
+          <div key={prompt.id} className="space-y-3">
+            <div className="bg-leaf-50 border border-leaf-200 rounded-xl p-4">
+              <p className="text-sm text-leaf-800 font-medium leading-relaxed">
+                <span className="text-lg mr-1">{prompt.emoji}</span> {prompt.whatChildLearned}
+              </p>
+            </div>
+            <div className="bg-white/60 border border-gray-200 rounded-xl p-4">
+              <div className="flex items-center gap-1 mb-2">
+                <MessageCircle size={14} className="text-mint-500" />
+                <span className="text-xs font-bold text-gray-600">Tối nay hỏi con:</span>
+              </div>
+              <p className="text-sm text-gray-700 italic">&ldquo;{prompt.questionToAsk}&rdquo;</p>
+            </div>
+            <div className="bg-sun-50 border border-sun-200 rounded-xl p-4">
+              <div className="flex items-center gap-1 mb-2">
+                <Clock size={14} className="text-sun-500" />
+                <span className="text-xs font-bold text-gray-600">Hoạt động {prompt.timeEstimate}:</span>
+              </div>
+              <p className="text-sm text-gray-700">{prompt.activity}</p>
+            </div>
+            <div className="bg-coral-50 border border-coral-200 rounded-xl p-3">
+              <div className="flex items-center gap-1">
+                <Heart size={14} className="text-coral-500" />
+                <span className="text-xs font-bold text-gray-600">Nên khen:</span>
+                <span className="text-xs text-gray-600 ml-1">{prompt.positiveBehavior}</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </GlassCard>
     </div>
   );
