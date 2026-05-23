@@ -232,4 +232,7 @@ export const skillTagLabels = {
   'self-reflection': 'Tự nhìn lại',
   'goal-setting': 'Đặt mục tiêu',
   'growth-mindset': 'Tư duy phát triển',
+  'sharing-mindset': 'Tư duy chia sẻ',
+  'environmental-awareness': 'Nhận thức môi trường',
+  'critical-thinking': 'Tư duy phản biện',
 };

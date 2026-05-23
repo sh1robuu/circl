@@ -18,12 +18,12 @@ import SafetySettingsPage from '../pages/SafetySettingsPage';
 import AdminDashboardPage from '../pages/AdminDashboardPage';
 
 /**
- * ProtectedRoute - Redirects to auth if no role selected
+ * ProtectedRoute - Redirects to auth if not logged in
  */
 function ProtectedRoute({ children, allowedRole }) {
-  const { currentRole } = useStore();
+  const { currentRole, isAuthenticated } = useStore();
 
-  if (!currentRole) {
+  if (!currentRole && !isAuthenticated) {
     return <Navigate to="/auth" replace />;
   }
 
